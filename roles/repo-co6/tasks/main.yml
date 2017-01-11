@@ -1,0 +1,14 @@
+---
+- name: Add repositories repo.docker.ru
+  yum_repository:
+    name: docker
+    description: REPO DOCKER.RU
+    baseurl: http://repo.docker.ru/pub/linux/centos/6/$basearch/
+    gpgcheck: yes
+    enabled: yes
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-docker
+
+- name: Add RPM-GPG-KEY-docker
+  copy: src=RPM-GPG-KEY-docker
+        dest=/etc/pki/rpm-gpg/
+        owner=root group=root mode=0644

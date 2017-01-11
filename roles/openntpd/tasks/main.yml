@@ -1,0 +1,19 @@
+- name: Add repository
+  get_url:
+    url: https://copr.fedorainfracloud.org/coprs/poettlerric/openntpd/repo/epel-7/poettlerric-openntpd-epel-7.repo
+    dest: /etc/yum.repos.d
+    mode: 0644
+
+- name: install openntpd
+  yum: 
+    pkg: openntpd
+    state: installed
+
+- name: enabled openntpd
+  systemd:
+    name: openntpd
+    enabled: yes
+
+- name: install openntpd config
+  template: src=ntpd.conf dest=/etc/ntpd.conf
+  notify: restart openntpd

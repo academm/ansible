@@ -1,0 +1,12 @@
+---
+- name: install openntpd
+  yum:
+    pkg: openntpd
+    state: installed
+  notify: start openntpd
+
+- name: enabled openntpd
+  systemd:
+    name: openntpd
+    enabled: yes
+
