@@ -1,0 +1,17 @@
+---
+- name: removed ntp and ntpdate
+  yum: name={{item}} state=removed
+  with_items: 
+      - ntp
+      - ntpdate
+  
+- name: install openntpd
+  yum:
+    pkg: openntpd
+    state: installed
+
+- name: enabled and started openntpd
+  service:
+    name: openntpd
+    enabled: yes
+    state: started
