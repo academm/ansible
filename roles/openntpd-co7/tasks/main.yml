@@ -1,4 +1,7 @@
 ---
+- name: timedatectl set-ntp false
+  command: timedatectl set-ntp false 
+
 - name: install openntpd
   yum:
     pkg: openntpd
